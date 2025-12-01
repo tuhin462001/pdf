@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Roads to Your New Home | Get Your Move On</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #63182E;
+            --secondary: #ff6b35;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+            --light-text: #666;
+            --van-line-color: #e74c3c;
+            --gymo-color: #27ae60;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            color: var(--dark-text);
+            line-height: 1.6;
+            background-color: #f5f7fc;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3ca0 100%);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .intro {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2.5rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .comparison-container {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .toggle-view {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .toggle-btn.active {
+            color: white;
+        }
+
+        .toggle-btn.van-line {
+            background-color: white;
+            color: var(--van-line-color);
+        }
+
+        .toggle-btn.van-line.active {
+            background-color: var(--van-line-color);
+        }
+
+        .toggle-btn.gymo {
+            background-color: white;
+            color: var(--gymo-color);
+        }
+
+        .toggle-btn.gymo.active {
+            background-color: var(--gymo-color);
+        }
+
+        .comparison-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .model-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .model-header {
+            padding: 1.8rem;
+            color: white;
+            text-align: center;
+        }
+
+        .van-line .model-header {
+            background: linear-gradient(to right, var(--van-line-color), #c0392b);
+        }
+
+        .gymo .model-header {
+            background: linear-gradient(to right, var(--gymo-color), #219653);
+        }
+
+        .model-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .model-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .features-list {
+            padding: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            margin-bottom: 1.8rem;
+            align-items: flex-start;
+        }
+
+        .feature:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+
+        .van-line .feature-icon {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--van-line-color);
+        }
+
+        .gymo .feature-icon {
+            background-color: rgba(39, 174, 96, 0.1);
+            color: var(--gymo-color);
+        }
+
+        .feature-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-text p {
+            color: var(--light-text);
+            font-size: 0.95rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            box-shadow: var(--shadow);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1.2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .van-line-row {
+            background-color: rgba(231, 76, 60, 0.05);
+        }
+
+        .gymo-row {
+            background-color: rgba(39, 174, 96, 0.05);
+        }
+
+        .comparison-table .van-line-header {
+            background-color: var(--van-line-color);
+            color: white;
+        }
+
+        .comparison-table .gymo-header {
+            background-color: var(--gymo-color);
+            color: white;
+        }
+
+        .cta-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: linear-gradient(135deg, #63182E 0%, #1a3ca0 100%);
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.2rem;
+            padding: 1rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .contact-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #e55a2b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        footer {
+            background-color: #1a1a2e;
+            color: #aaa;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .comparison-content {
+                flex-direction: row;
+            }
+
+            .model-card {
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .intro {
+                padding: 1.5rem;
+                margin: 2rem 1rem;
+            }
+
+            .model-header {
+                padding: 1.2rem;
+            }
+
+            .features-list {
+                padding: 1.5rem;
+            }
+
+            .cta-section {
+                padding: 2rem 1.5rem;
+                margin: 3rem 1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="https://drive.google.com/thumbnail?id=1P4LqoAnu_nwxVEMzXGact2FheKaLHULD&sz=w1200" alt="Get Your Move On Logo" class="logo">
+            </div>
+            <h1>Two Roads to Your New Home</h1>
+            <p class="tagline">A Side-by-Side Comparison of Interstate Moving Models</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro">
+            <p>When moving your family across state lines, the stakes are high - you're entrusting strangers with everything you own. <span class="highlight">Choosing the right moving company</span> can mean the difference between a smooth transition and a months-long nightmare.</p>
+        </section>
+
+        <section class="comparison-container">
+
+
+            <div class="comparison-content">
+                <div class="model-card van-line" id="van-line-card">
+                    <div class="model-header">
+                        <h2 class="model-title">The Van Line Model</h2>
+                        <p class="model-subtitle">National Brand. Local Agents. Subcontracted Drivers.</p>
+                    </div>
+                    <div class="features-list">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-sitemap"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Multiple Companies Involved</h4>
+                                <p>You often don't meet your mover until move day.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>No Single Point of Ownership</h4>
+                                <p>Finger pointing is common when problems arise.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-calendar-times"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Long Delivery Windows</h4>
+                                <p>5-21 business days; delays are frequent.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-hard-hat"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Inconsistent Labor Quality</h4>
+                                <p>Many 1099s, minimal vetting.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Unclear Communication</h4>
+                                <p>Multiple phone numbers and unclear communication channels.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-money-check-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Minimal Reimbursement</h4>
+                                <p>Unless premium coverage is purchased.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="model-card gymo" id="gymo-card">
+                    <div class="model-header">
+                        <h2 class="model-title">The Get Your Move On Model</h2>
+                        <p class="model-subtitle">One Truck. One Team. One Promise.</p>
+                    </div>
+                    <div class="features-list">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>W-2 Employees</h4>
+                                <p>Every move handled by background-checked and trained employees.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>One Company. One Number. One Owner.</h4>
+                                <p>Single point of accountability.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Guaranteed Dates</h4>
+                                <p>Guaranteed pickup and delivery dates.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Fully Licensed & Insured</h4>
+                                <p>No subcontracting.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>White-Glove Service</h4>
+                                <p>From packing to final placement.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Family-Owned Company</h4>
+                                <p>20+ years of reputation with one truck committed to one client: YOU.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th class="van-line-header">Van Line Model</th>
+                        <th class="gymo-header">Get Your Move On Model</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="van-line-row">
+                        <td><strong>Structure</strong></td>
+                        <td>National Brand. Local Agents. Subcontracted Drivers.</td>
+                        <td>One Truck. One Team. One Promise.</td>
+                    </tr>
+                    <tr class="gymo-row">
+                        <td><strong>Employees</strong></td>
+                        <td>Inconsistent labor quality - many 1099s, minimal vetting</td>
+                        <td>Every move handled by W-2 employees - background-checked and trained</td>
+                    </tr>
+                    <tr class="van-line-row">
+                        <td><strong>Accountability</strong></td>
+                        <td>No single point of ownership. Finger pointing is common when problems arise</td>
+                        <td>One company. One number. One accountable owner</td>
+                    </tr>
+                    <tr class="gymo-row">
+                        <td><strong>Delivery</strong></td>
+                        <td>Long delivery windows (5-21 business days); delays are frequent</td>
+                        <td>Guaranteed pickup and delivery dates</td>
+                    </tr>
+                    <tr class="van-line-row">
+                        <td><strong>Licensing</strong></td>
+                        <td>Varies by subcontractor</td>
+                        <td>Fully licensed and insured - no subcontracting</td>
+                    </tr>
+                    <tr class="gymo-row">
+                        <td><strong>Service</strong></td>
+                        <td>Standard moving service</td>
+                        <td>White-glove service from packing to final placement</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="cta-section">
+            <h2>Why It Matters:</h2>
+            <p><em>Van lines move freight. We move families.</em></p>
+            <p>When you hire Get Your Move On, you're hiring a local family-owned company with 20+ years of reputation - and one truck committed to one client: YOU.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <span>602-820-3559</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe contact-icon"></i>
+                    <span>www.getyourmoveonllc.com</span>
+                </div>
+            </div>
+            
+        </section>
+    </main>
+
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const vanLineBtn = document.getElementById('toggle-van-line');
+            const gymoBtn = document.getElementById('toggle-gymo');
+            const vanLineCard = document.getElementById('van-line-card');
+            const gymoCard = document.getElementById('gymo-card');
+            
+            // Toggle functionality
+            vanLineBtn.addEventListener('click', function() {
+                vanLineBtn.classList.add('active');
+                gymoBtn.classList.remove('active');
+                vanLineCard.style.display = 'block';
+                gymoCard.style.display = 'none';
+            });
+            
+            gymoBtn.addEventListener('click', function() {
+                gymoBtn.classList.add('active');
+                vanLineBtn.classList.remove('active');
+                gymoCard.style.display = 'block';
+                vanLineCard.style.display = 'none';
+            });
+            
+            // Initialize with both cards visible on desktop, only van line on mobile
+            function checkScreenSize() {
+                if (window.innerWidth < 992) {
+                    // Mobile - show only van line initially
+                    gymoCard.style.display = 'none';
+                    vanLineCard.style.display = 'block';
+                } else {
+                    // Desktop - show both
+                    gymoCard.style.display = 'block';
+                    vanLineCard.style.display = 'block';
+                }
+            }
+            
+            checkScreenSize();
+            window.addEventListener('resize', checkScreenSize);
+            
+            // Add animation to cards on scroll
+            const cards = document.querySelectorAll('.model-card');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
